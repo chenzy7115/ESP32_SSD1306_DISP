@@ -191,10 +191,10 @@ void lvgl_display_ui(lv_disp_t *disp, int tempe, int humid)
 
         // 初始布局设置
         lv_obj_align(label_room, LV_ALIGN_TOP_LEFT, 0, 0);
-        lv_obj_align(label_temp_str, LV_ALIGN_CENTER, -20, -2);
-        lv_obj_align(label_humi_str, LV_ALIGN_CENTER, -20, 20);
-        lv_obj_align(label_temp_val, LV_ALIGN_CENTER, 20, -2);
-        lv_obj_align(label_humi_val, LV_ALIGN_CENTER, 20, 20);
+        lv_obj_align(label_temp_str, LV_ALIGN_CENTER, -30, -2);
+        lv_obj_align(label_humi_str, LV_ALIGN_CENTER, -30, 20);
+        lv_obj_align(label_temp_val, LV_ALIGN_CENTER, 25, -2);
+        lv_obj_align(label_humi_val, LV_ALIGN_CENTER, 25, 20);
 
         lv_label_set_text(label_room, "ROOM ENV :");
         lv_label_set_text(label_temp_str, "TEMP :");
@@ -202,9 +202,9 @@ void lvgl_display_ui(lv_disp_t *disp, int tempe, int humid)
     }
 
     // 仅更新数值标签
-    char temp[8], humi[8];
-    snprintf(temp, sizeof(temp), "%d", tempe);
-    snprintf(humi, sizeof(humi), "%d", humid);
-    lv_label_set_text(label_temp_val, temp);
-    lv_label_set_text(label_humi_val, humi);
+    // char temp[8], humi[8];
+    // snprintf(temp, sizeof(temp), "%d", tempe);
+    // snprintf(humi, sizeof(humi), "%d", humid);
+    lv_label_set_text_fmt(label_temp_val, "%d.%d C",tempe/10,tempe%10);
+    lv_label_set_text_fmt(label_humi_val, "%d %%",humid);
 }

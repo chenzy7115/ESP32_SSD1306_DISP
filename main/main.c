@@ -11,7 +11,7 @@
 // 全局定义互斥锁
 static SemaphoreHandle_t lvgl_mutex = NULL;
 // 温度 湿度变量
-int temp = 0, hum = 0;
+static int temp = 0, hum = 0;
 
 void dht11_get_valu_task(void *pt)
 {
@@ -32,7 +32,7 @@ void dht11_get_valu_task(void *pt)
             xSemaphoreGive(lvgl_mutex);
         }
 
-        vTaskDelay(pdMS_TO_TICKS(1000));
+        vTaskDelay(pdMS_TO_TICKS(500));
     }
 }
 
@@ -49,13 +49,11 @@ void display_task(void *pt)
         if (xSemaphoreTake(lvgl_mutex, portMAX_DELAY) == pdTRUE)
         {
             // 临界区代码，访问共享资源
-            xSemaphoreTake(lvgl_mutex, portMAX_DELAY); // 加锁
-            lvgl_display_ui(disp, esp_random() % 101, esp_random() % 101);
+            // xSemaphoreTake(lvgl_mutex, portMAX_DELAY); // 加锁
+            lvgl_display_ui(disp, temp , hum );
             xSemaphoreGive(lvgl_mutex); // 解锁
-            vTaskDelay(pdMS_TO_TICKS(1000));
+            vTaskDelay(pdMS_TO_TICKS(500));
 
-            // 释放互斥锁
-            xSemaphoreGive(lvgl_mutex);
         }
     }
 }
@@ -71,12 +69,17 @@ void app_main(void)
     ESP_LOGI(TAG, "[APP] IDF version: %s", esp_get_idf_version());
 
     lvgl_mutex = xSemaphoreCreateMutex(); // 初始化锁
+    if (lvgl_mutex == NULL) 
+    {
+        ESP_LOGE(TAG, "无法创建互斥锁");
+        return;
+    }
 
-    xTaskCreate(display_task, "display", 1024 * 2, NULL, 2, NULL);
-    xTaskCreate(dht11_get_valu_task, "DHT11_Get", 1024 * 2, NULL, 2, NULL);
+    xTaskCreate(display_task, "display", 1024 * 4, NULL, 2, NULL);
+    xTaskCreate(dht11_get_valu_task, "DHT11_Get", 1024 * 2, NULL, 1, NULL);
 
     while (1)
     {
-        vTaskDelay(pdMS_TO_TICKS(50));
+        vTaskDelay(pdMS_TO_TICKS(1000));
     }
 }

@@ -70,6 +70,31 @@ I (448) main_task: Returned from app_main()
 ...
 ```
 
-## Troubleshooting
+## 调试过程中遇到过的问题
 
-For any technical queries, please open an [issue](https://github.com/espressif/esp-idf/issues) on GitHub. We will get back to you soon.
+## 1.栈空间不足
+
+如果将display_task的优先级由2降为1时将出现任务栈空间不足的问题，如下提示
+***ERROR*** A stack overflow in task display has been detected.
+栈空间不足的直接原因‌
+display_task当前分配栈大小：1024*2=2048 bytes
+LVGL初始化(lvgl_init())和刷新(lvgl_display_ui())需要大量栈空间（通常≥4096 bytes）
+优先级降低后，任务调度导致栈使用模式变化，暴露原有临界空间问题
+调试后将栈分配空间调整为1024*4。同时优先级改为2,
+
+## 2.时序控制‌
+
+DHT11读取间隔 ≥1s，避免传感器无响应26
+显示屏刷新率建议 ≤1Hz，防止LVGL任务过载
+
+实际调试中将DHT11和display的时间都调整为500ms，同时display优先级为2，DHT11优先级为1
+
+测试通过
+
+## 3.内存溢出问题
+
+lvgl的对象，如果没有必要不要一直创建
+反复创建的对象，需要采样静态的方式来创建，通常在头文件中进行创建，
+避免反复创建，哪怕删除对象，由于内存管理的问题，也会出现无内存可用的情况。
+
+
