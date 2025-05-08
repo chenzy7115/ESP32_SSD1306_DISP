@@ -71,8 +71,9 @@ void app_main(void)
 {
     lvgl_mutex = xSemaphoreCreateMutex(); // 初始化锁
 
-    // disp = lvgl_init();
     xTaskCreate(display_task, "display", 1024 * 2, NULL, 2, NULL);
+    xTaskCreate(dht11_get_valu_task, "DHT11_Get", 1024 * 2, NULL, 2, NULL);
+
     while (1)
     {
         vTaskDelay(pdMS_TO_TICKS(50));
