@@ -77,10 +77,10 @@ I (448) main_task: Returned from app_main()
 如果将display_task的优先级由2降为1时将出现任务栈空间不足的问题，如下提示
 ***ERROR*** A stack overflow in task display has been detected.
 栈空间不足的直接原因‌
-display_task当前分配栈大小：1024*2=2048 bytes
+display_task当原分配栈大小：2048 bytes
 LVGL初始化(lvgl_init())和刷新(lvgl_display_ui())需要大量栈空间（通常≥4096 bytes）
 优先级降低后，任务调度导致栈使用模式变化，暴露原有临界空间问题
-调试后将栈分配空间调整为1024*4。同时优先级改为2,
+调试后将栈分配空间调整为4096。同时优先级改为2,
 
 ## 2.时序控制‌
 
