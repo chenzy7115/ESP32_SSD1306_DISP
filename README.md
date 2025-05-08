@@ -1,23 +1,25 @@
 | Supported Targets | ESP32 | ESP32-C2 | ESP32-C3 | ESP32-C5 | ESP32-C6 | ESP32-C61 | ESP32-H2 | ESP32-P4 | ESP32-S2 | ESP32-S3 |
 | ----------------- | ----- | -------- | -------- | -------- | -------- | --------- | -------- | -------- | -------- | -------- |
 
-# I2C OLED example
+# I2C OLED SSD1306芯片
 
-[esp_lcd](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/lcd.html) supports I2C interfaced OLED LCD, whose color depth is usually 1bpp.
-
-This example shows how to make use of the SSD1306 panel driver from `esp_lcd` component to facilitate the porting of LVGL library. In the end, example will display a scrolling text on the OLED screen. For more information about porting the LVGL library, you can also refer to another [lvgl porting example](../i80_controller/README.md).
+这个项目是使用ESP-IDF框架，开发版是ESP32，对乐鑫的官方例程进行修改。使用freeRTOS的多任务。比较官方例程，可以通过UI接口可以直接传入2个int值，并在
 
 ## How to use the example
 
 ### Hardware Required
+### 需要的硬件
 
 * An ESP development board
+* ESP32开发板，只要是基于EPS32芯片的既可
 * An SSD1306 OLED LCD, with I2C interface
+* OLED的驱动芯片是SSD1306的，如果是使用SH1107的OLED，在IIC驱动上要修改，具体看官方例程
 * An USB cable for power supply and programming
 
-### Hardware Connection
+### 硬件连接的配置
 
 The connection between ESP Board and the LCD is as follows:
+可以在display.c文件中对SDA和SCL的pin直接进行定义后，将开发板的按下图的方式连接到OLED
 
 ```text
       ESP Board                       OLED LCD (I2C)
