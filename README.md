@@ -5,9 +5,6 @@
 
 这个项目是使用ESP-IDF框架，开发版是ESP32，对乐鑫的官方例程进行修改。使用freeRTOS的多任务。比较官方例程，可以通过UI接口可以直接传入2个int值，并在
 
-## How to use the example
-
-### Hardware Required
 ### 需要的硬件
 
 * An ESP development board
