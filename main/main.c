@@ -15,13 +15,6 @@ int temp = 0, hum = 0;
 
 void dht11_get_valu_task(void *pt)
 {
-    ESP_ERROR_CHECK(nvs_flash_init());
-    vTaskDelay(100 / portTICK_PERIOD_MS);
-
-    ESP_LOGI(TAG, "[APP] APP Is Start!~\r\n");
-    ESP_LOGI(TAG, "[APP] IDF Version is %d.%d.%d", ESP_IDF_VERSION_MAJOR, ESP_IDF_VERSION_MINOR, ESP_IDF_VERSION_PATCH);
-    ESP_LOGI(TAG, "[APP] Free memory: %lu bytes", esp_get_free_heap_size());
-    ESP_LOGI(TAG, "[APP] IDF version: %s", esp_get_idf_version());
 
     DHT11_Init(DHT11_GPIO);
     while (1)
@@ -69,6 +62,14 @@ void display_task(void *pt)
 
 void app_main(void)
 {
+    ESP_ERROR_CHECK(nvs_flash_init());
+    vTaskDelay(pdMS_TO_TICKS(100));
+
+    ESP_LOGI(TAG, "[APP] APP Is Start!~\r\n");
+    ESP_LOGI(TAG, "[APP] IDF Version is %d.%d.%d", ESP_IDF_VERSION_MAJOR, ESP_IDF_VERSION_MINOR, ESP_IDF_VERSION_PATCH);
+    ESP_LOGI(TAG, "[APP] Free memory: %lu bytes", esp_get_free_heap_size());
+    ESP_LOGI(TAG, "[APP] IDF version: %s", esp_get_idf_version());
+
     lvgl_mutex = xSemaphoreCreateMutex(); // 初始化锁
 
     xTaskCreate(display_task, "display", 1024 * 2, NULL, 2, NULL);
