@@ -1,7 +1,7 @@
 {
     "version":            "1.2",
     "project_name":       "display",
-    "project_version":    "1",
+    "project_version":    "1037180-dirty",
     "project_path":       "D:/ESP32-IDF/display",
     "idf_path":           "C:/Users/18960/esp/v5.4.1/esp-idf",
     "build_dir":          "D:/ESP32-IDF/display/build",
@@ -1240,7 +1240,7 @@
             "managed_reqs": [],
             "managed_priv_reqs": [ "espressif__esp_lcd_sh1107", "espressif__esp_lvgl_port", "lvgl__lvgl" ],
             "file": "D:/ESP32-IDF/display/build/esp-idf/main/libmain.a",
-            "sources": [ "D:/ESP32-IDF/display/main/main.c", "D:/ESP32-IDF/display/main/display.c" ],
+            "sources": [ "D:/ESP32-IDF/display/main/main.c", "D:/ESP32-IDF/display/main/display.c", "D:/ESP32-IDF/display/main/dht11.c" ],
             "include_dirs": [ "." ]
         },
         "mbedtls": {
