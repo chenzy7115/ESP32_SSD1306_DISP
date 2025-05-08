@@ -1,9 +1,13 @@
 | Supported Targets | ESP32 | ESP32-C2 | ESP32-C3 | ESP32-C5 | ESP32-C6 | ESP32-C61 | ESP32-H2 | ESP32-P4 | ESP32-S2 | ESP32-S3 |
 | ----------------- | ----- | -------- | -------- | -------- | -------- | --------- | -------- | -------- | -------- | -------- |
 
-# I2C OLED SSD1306芯片
 
-这个项目是使用ESP-IDF框架，开发版是ESP32，对乐鑫的官方例程进行修改。使用freeRTOS的多任务。比较官方例程，可以通过UI接口可以直接传入2个int值，并在
+#  TEMP & HUMI sensor that are DHT11
+#  DISPLAY I2C OLED SSD1306芯片
+
+* 这个项目是使用ESP-IDF框架，开发版是ESP32，对乐鑫的官方例程进行修改。
+* 使用freeRTOS的多任务。
+* DHT11采集到的温度和湿度信息，在OLED上显示。
 
 ### 需要的硬件
 
