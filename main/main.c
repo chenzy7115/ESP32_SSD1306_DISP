@@ -32,7 +32,7 @@ void dht11_get_valu_task(void *pt)
             xSemaphoreGive(lvgl_mutex);
         }
 
-        vTaskDelay(pdMS_TO_TICKS(500));
+        vTaskDelay(pdMS_TO_TICKS(2000));
     }
 }
 

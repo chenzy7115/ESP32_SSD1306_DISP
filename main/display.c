@@ -206,5 +206,5 @@ void lvgl_display_ui(lv_disp_t *disp, int tempe, int humid)
     // snprintf(temp, sizeof(temp), "%d", tempe);
     // snprintf(humi, sizeof(humi), "%d", humid);
     lv_label_set_text_fmt(label_temp_val, "%d.%d C",tempe/10,tempe%10);
-    lv_label_set_text_fmt(label_humi_val, "%d %%",humid);
+    lv_label_set_text_fmt(label_humi_val, "%d   %%",humid);
 }

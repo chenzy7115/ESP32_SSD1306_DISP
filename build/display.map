@@ -20347,7 +20347,7 @@ LOAD C:/Users/18960/.espressif/tools/xtensa-esp-elf/esp-14.2.0_20241119/xtensa-e
  .rodata.lvgl_init.str1.4
                 0x3f40a6d9      0x1f2 esp-idf/main/libmain.a(display.c.obj)
  .rodata.lvgl_display_ui.str1.4
-                0x3f40a6d9       0x2a esp-idf/main/libmain.a(display.c.obj)
+                0x3f40a6d9       0x2c esp-idf/main/libmain.a(display.c.obj)
  *fill*         0x3f40a6d9        0x3 
  .rodata.lvgl_cfg$0
                 0x3f40a6dc       0x14 esp-idf/main/libmain.a(display.c.obj)
@@ -25326,7 +25326,7 @@ LOAD C:/Users/18960/.espressif/tools/xtensa-esp-elf/esp-14.2.0_20241119/xtensa-e
  *fill*         0x400d760a        0x2 
  .text.dht11_get_valu_task
                 0x400d760c       0x71 esp-idf/main/libmain.a(main.c.obj)
-                                 0x84 (size before relaxing)
+                                 0x88 (size before relaxing)
                 0x400d760c                dht11_get_valu_task
  *fill*         0x400d767d        0x3 
  .text.display_task

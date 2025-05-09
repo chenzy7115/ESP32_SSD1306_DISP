@@ -1,7 +1,7 @@
 {
     "version":            "1.2",
     "project_name":       "display",
-    "project_version":    "581ed1d-dirty",
+    "project_version":    "e6c5b63-dirty",
     "project_path":       "D:/ESP32-IDF/display",
     "idf_path":           "C:/Users/18960/esp/v5.4.1/esp-idf",
     "build_dir":          "D:/ESP32-IDF/display/build",
